@@ -1,0 +1,43 @@
+{
+    "student": {
+        "student_name": "Arun",
+        "student_address": "Guindy",
+        "student_department": "MCA",
+        "student_age": 23,
+        "student_blood_group": "A +ve"
+    },
+    "operation": "insert"
+}
+
+
+{
+    "search_key": {
+        "student_name": "Arun"
+    },
+    "columns": "*",
+    "operation": "select"
+}
+
+{
+    "search_key": {
+        "student_name": "Arun"
+    },
+    "columns": [
+        "student_id",
+        "student_address"
+    ],
+    "operation": "select"
+}
+
+{
+    method : "getStudent"
+}
+
+if POst['get'] {
+    obj->getstuu(daad)
+}
+
+getstude(da) {
+    $sql->stri(sd,dda);
+    xsa
+}
