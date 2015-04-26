@@ -20,10 +20,11 @@
 			$this->connection_obj = $this->mysql->conn;
 		}
 
-		public function setData($post_data) {
+		public function storeStudent($post_data) {
 			$data = (array)$post_data->student;
-			$data['student_id'] = 1002;
-			// $this->mysql->find_last($this->tablename, "student_id");
+			$result = $this->mysql->find_last($this->tablename, "student_id");
+			$id = (integer)mysqli_fetch_assoc($result)["student_id"];
+			$data['student_id'] = ++$id;
 			if (!$this->mysql->insert($this->tablename, $data)){
 				echo "Zero Record Updated...!";
 				return;
@@ -31,21 +32,19 @@
 			echo "Record Updated...!";
 		}
 
-		public function getData($post_data) {
+		public function getStudent($post_data) {
 			$search_key = null;
 			$i = 0;
 			foreach ($post_data->search_key as $key => $value) {
 				$search_key[$i++] = $key ."='". $value . "'";	
 			}
-
 			$column_names = sizeof((array)$post_data->columns) > 1 ? (array)$post_data->columns : $post_data->columns;
-			$result = $this->mysql->find($this->tablename, $post_data->columns, $search_key[0]);
+			$result = $this->mysql->find($this->tablename, $column_names, $search_key[0]);
 			if(!$result) {
 				echo $result;
-			} else {
-				echo json_encode(mysqli_fetch_assoc($result));
+				return;
 			}
-
+			echo json_encode(mysqli_fetch_assoc($result));
 		}
 
 		function __destruct() {
@@ -58,16 +57,17 @@
 			die("Need post Data...!"); 
 		}
 		$student_info = json_decode($_POST['data']);
-		$operation = $student_info->operation;
 		$std_obj = new StudentInfo();
-		if($operation === "insert") {
-			$std_obj->connection();
-			$std_obj->setData($student_info);
-		} else if($operation === "select") {
-			$std_obj->connection();
-			$std_obj->getData($student_info);
-		} else {
-			echo "Specified Wrong Operation...!";
+		$std_obj->connection();
+		$std_obj->storeStudent($student_info);
+	}
+	if ( $_SERVER['REQUEST_METHOD'] === "GET" ) {
+		if(!$_GET['data']) {
+			die("Need get Data...!"); 	
 		}
-	}	
+		$student_info = json_decode($_GET['data']);
+		$std_obj = new StudentInfo();
+		$std_obj->connection();
+		$std_obj->getStudent($student_info);
+	}
 ?>

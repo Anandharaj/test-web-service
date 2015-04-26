@@ -14,10 +14,9 @@
     "search_key": {
         "student_name": "Arun"
     },
-    "columns": "*",
-    "operation": "select"
+    "columns": "*"
 }
-
+http://192.168.0.3/test-web-service/student_info.php?data={"search_key":{"student_name":"Arun"},"columns":"*"}
 {
     "search_key": {
         "student_name": "Arun"
@@ -41,3 +40,13 @@ getstude(da) {
     $sql->stri(sd,dda);
     xsa
 }
+
+
+
+
+
+array (size=2)
+  'search_key' => 
+    array (size=1)
+      'student_name' => string 'Arun' (length=4)
+  'columns' => string '*' (length=1)

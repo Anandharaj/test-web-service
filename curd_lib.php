@@ -98,13 +98,12 @@
 			}
 		}	
 		public function find_last($tableName, $columnName) {
-			$query = "select last($columnName) from $tableName";
+			$query = "select $columnName from $tableName order by student_id desc limit 1";
 			$result = $this->conn->query($query);
-			// if ($result) {
-			// 	echo "";
-			// } else {
-			// 	echo "<br>Err->" . $this->conn->error;
-			// }
+			if ($result->num_rows > 0) {
+				return $result;
+			} 
+			return null;
 		}
 		// Drop Operation function call parameters $type type(string) specifies whether it is Table or Database and $name type(string) specifies the name of the table or database 
 		public function drop($type, $name) {
