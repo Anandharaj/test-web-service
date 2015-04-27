@@ -5,8 +5,7 @@
         "student_department": "MCA",
         "student_age": 23,
         "student_blood_group": "A +ve"
-    },
-    "operation": "insert"
+    }
 }
 
 
@@ -16,7 +15,7 @@
     },
     "columns": "*"
 }
-http://192.168.0.3/test-web-service/student_info.php?data={"search_key":{"student_name":"Arun"},"columns":"*"}
+http://192.168.0.3/test-web-service/student_info.php?data={"search_key": {"student_name": "Arun"},"columns": ["student_id","student_address"],"operation": "select"}
 {
     "search_key": {
         "student_name": "Arun"
@@ -24,8 +23,7 @@ http://192.168.0.3/test-web-service/student_info.php?data={"search_key":{"studen
     "columns": [
         "student_id",
         "student_address"
-    ],
-    "operation": "select"
+    ]
 }
 
 {
