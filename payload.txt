@@ -5,9 +5,11 @@
         "student_department": "MCA",
         "student_age": 23,
         "student_blood_group": "A +ve"
-    }
+    },
+    "type": "storeStudentData"
 }
 
+{     "student": {    "student_id": 1002,   "student_name": "Arun",         "student_address": "Guindy",         "student_department": "MCA",         "student_age": 23,         "student_blood_group": "A +ve"     }, "type": "updateStudentData" }
 
 {
     "search_key": {
@@ -15,7 +17,7 @@
     },
     "columns": "*"
 }
-http://192.168.0.3/test-web-service/student_info.php?data={"search_key": {"student_name": "Arun"},"columns": ["student_id","student_address"],"operation": "select"}
+http://192.168.0.3/test-web-service/student_info.php?data={"search_key": {"student_name": "Arun"},"columns": ["student_id","student_address"], "type": "getStudentData"}
 {
     "search_key": {
         "student_name": "Arun"

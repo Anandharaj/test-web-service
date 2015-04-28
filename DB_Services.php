@@ -26,12 +26,18 @@ class DatabaseService {
 		return $this->conn->query($sql);
 	}
 
-	public function updateStudentDetails() {
-		
+	public function updateStudentDetails($columnsValues, $id) {
+		$sql = "update student_info set $columnsValues where student_id=$id";
+		return $this->conn->query($sql);
 	}
 	
 	public function getLastStudentData($column) {
 		$sql = "select $column from student_info order by student_id desc LIMIT 1";
+		return $this->conn->query($sql);
+	}
+
+	public function deleteStudentDetails($id) {
+		$sql = "delete from student_info where student_id=$id";
 		return $this->conn->query($sql);
 	}
 

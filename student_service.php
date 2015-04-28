@@ -16,7 +16,6 @@
 		}
 
 		public function storeStudentData($data) {
-			$data = (array)json_decode($data);
 			$columns = "student_id";
 			$values = (integer)mysqli_fetch_assoc($this->db->getLastStudentData($columns))[$columns];
 			$values = ++$values;
@@ -27,9 +26,18 @@
 			return $this->db->storeStudentDetails($columns, $values);
 		}
 		public function updateStudentData($data) {
-			$data = (array)json_decode($data);
+			$setValues = "";
 			$id = $data['student']->student_id;
-			
+			unset($data['student']->student_id);
+			foreach ($data['student'] as $key => $value) {
+				$setValues = "$setValues, $key='$value'"; 
+			}
+			$setValues = substr($setValues, 1);
+			return $this->db->updateStudentDetails($setValues, $id);
+		}
+
+		public function deleteStudentData($id) {
+			return $this->db->deleteStudentDetails($id);
 		}
 	}
 ?>
