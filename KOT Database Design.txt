@@ -1,0 +1,69 @@
+KOT Database Design
+==================================================================================================
+
+Table_User:
+
+Coloumn Name			Type
+
+user_name				String
+user_id					int (primary key)
+email_id				String
+password				String (encrypted)
+Phone					int
+Auth_type				int
+
+==================================================================================================
+
+Table_Category
+
+Coloumn Name 			Type
+
+cat_id					int
+cat_name				String
+
+==================================================================================================
+
+Table_item
+
+Coloumn Name 			Type
+
+cat_id					int
+item_id					int (primary Key)
+item_name				String
+item_price				int
+item_desc				String
+item_qty				int
+
+==================================================================================================
+
+Table_tableList
+
+Coloumn Name 			Type
+
+table_name				String (unique)
+table_id				int (primary Key)
+seat_name				String
+seat_id					int
+Status					bool
+
+==================================================================================================
+Table_bookingList
+
+Coloumn Name 			Type
+
+cus_name 				String
+user_id					int (cust_id)
+table_id				int
+seat_id					int
+allocated_person		user_id
+timing					datetime
+
+==================================================================================================
+
+Table_chefDesk
+
+Coloumn Name 			Type
+
+table_id				int
+item_list				Array
+Status 					String --> Under Preparation, Cooked, Yet to start
